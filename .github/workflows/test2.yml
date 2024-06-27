@@ -5,8 +5,5 @@ on:
 
 jobs:
   testjob2:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-
+    calling-test:
       - uses: saurbhc/test-plz-ignore/.github/workflows/test.yml
