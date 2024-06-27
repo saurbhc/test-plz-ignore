@@ -1,0 +1,12 @@
+name: test2
+on:
+  workflow_dispatch:
+  workflow_call:
+
+jobs:
+  testjob2:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: saurbhc/test-plz-ignore/.github/workflows/test.yml

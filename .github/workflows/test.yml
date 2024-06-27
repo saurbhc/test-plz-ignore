@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Build, tag, and push image to Amazon ECR
+      - name: echooo
         env:
           SHA: ${{ github.sha }}
         run: |
