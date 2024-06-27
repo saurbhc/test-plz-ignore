@@ -7,4 +7,5 @@ jobs:
   testjob2:
     steps:
       - calling-test:
+        name: calling test..
         uses: saurbhc/test-plz-ignore/.github/workflows/test.yml
