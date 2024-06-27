@@ -6,4 +6,4 @@ on:
 jobs:
   testjob2:
     calling-test:
-      - uses: saurbhc/test-plz-ignore/.github/workflows/test.yml
+      uses: saurbhc/test-plz-ignore/.github/workflows/test.yml
