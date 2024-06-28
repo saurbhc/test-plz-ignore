@@ -22,3 +22,4 @@ jobs:
           # if the commit-sha input is not provided, use ${{ github.sha }} as a fallback
           echo "commit-sha: ${{ inputs.commit-sha || github.sha }}"
           echo "$SHA"
+          echo ${{ env.SHA }}
