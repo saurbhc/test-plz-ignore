@@ -10,7 +10,7 @@ on:
 jobs:
   testjob:
     runs-on: ubuntu-latest
-    environment:
+    env:
       SHA: ${{ inputs.commit-sha || github.sha }}
     steps:
       - uses: actions/checkout@v2
