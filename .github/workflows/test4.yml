@@ -42,9 +42,13 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: my-packer-manifest-${{ matrix.arch_dir }}
+          path: .github/workflows/${{ matrix.arch_dir }}
       - name: check
         working-directory: .github/workflows/${{ matrix.arch_dir }}
         run: |
+          echo "ls -la"
           ls -la
+          echo "ls -la ami-name.txt"
           ls -la ami-name.txt
           AMI_NAME=$(cat ami-name.txt)
+          echo "AMI_NAME: $AMI_NAME"
