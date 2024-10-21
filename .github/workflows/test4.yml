@@ -42,6 +42,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: packer-manifest-${{ matrix.arch_dir }}
+          path: .github/workflows/${{ matrix.arch_dir }}
       - name: check
         working-directory: .github/workflows/${{ matrix.arch_dir }}
         run: |
