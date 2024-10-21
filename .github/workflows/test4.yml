@@ -20,7 +20,7 @@ jobs:
       - name: ami
         run: |
           echo "Building AMI for ${{ matrix.arch_dir }}"
-          echo "AMI_NAME=ami-test00000" > .github/workflows/${{ matrix.arch_dir }}/ami-name.txt
+          echo "ami-test00000" > .github/workflows/${{ matrix.arch_dir }}/ami-name.txt
       - uses: actions/upload-artifact@v4
         with:
           name: packer-manifest-${{ matrix.arch_dir }}
