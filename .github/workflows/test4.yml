@@ -1,0 +1,50 @@
+name: test file upload
+
+on:
+  workflow_dispatch:
+  pull_request:
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    strategy:
+      matrix:
+        arch_dir: [arm64]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: ami
+        run: |
+          echo "Building AMI for ${{ matrix.arch_dir }}"
+          echo "AMI_NAME=ami-test00000" > .github/workflows/${{ matrix.arch_dir }}/ami-name.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: packer-manifest-${{ matrix.arch_dir }}
+          path: .github/workflows/${{ matrix.arch_dir }}/ami-name.txt
+
+  set:
+    name: Set
+    needs:
+      - build
+    strategy:
+      matrix:
+        arch_dir: [arm64]
+    runs-on: ubuntu-latest
+    container: baloise/gitopscli:v5.8.1@sha256:dba9a1d0a226ba2e84da7e9f6030ffeefc6d86cc5658fd3d774b169e7548e30f
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Download
+        uses: actions/download-artifact@v4
+        with:
+          name: packer-manifest-${{ matrix.arch_dir }}
+      - name: check
+        working-directory: .github/workflows/${{ matrix.arch_dir }}
+        run: |
+          ls -la
+          ls -la ami-name.txt
+          AMI_NAME=$(cat ami-name.txt)
