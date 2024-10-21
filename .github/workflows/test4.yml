@@ -23,7 +23,7 @@ jobs:
           echo "ami-test00000" > .github/workflows/${{ matrix.arch_dir }}/ami-name.txt
       - uses: actions/upload-artifact@v4
         with:
-          name: packer-manifest-${{ matrix.arch_dir }}
+          name: my-packer-manifest-${{ matrix.arch_dir }}
           path: .github/workflows/${{ matrix.arch_dir }}/ami-name.txt
 
   set:
@@ -41,8 +41,7 @@ jobs:
       - name: Download
         uses: actions/download-artifact@v4
         with:
-          name: packer-manifest-${{ matrix.arch_dir }}
-          path: .github/workflows/${{ matrix.arch_dir }}
+          name: my-packer-manifest-${{ matrix.arch_dir }}
       - name: check
         working-directory: .github/workflows/${{ matrix.arch_dir }}
         run: |
