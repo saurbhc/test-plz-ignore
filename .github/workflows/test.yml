@@ -5,9 +5,5 @@ on:
       - testme-*
 
 jobs:
-  testjob:
-    if: github.event.created == false
-    runs-on: ubuntu-latest
-    steps:
-      - name: echo hello hello
-        run: echo "hello hello"
+  call-test2-workflow:
+    uses: saurbhc/test-plz-ignore/.github/workflows/test2.yml@main
