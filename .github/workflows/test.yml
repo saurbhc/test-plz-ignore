@@ -1,25 +1,12 @@
 name: test
 on:
-  workflow_dispatch:
-  workflow_call:
-    inputs:
-      commit-sha:
-        required: true
-        type: string
+  push:
+    branches:
+      - testme-*
 
 jobs:
   testjob:
     runs-on: ubuntu-latest
-    env:
-      SHA: ${{ inputs.commit-sha || github.sha }}
     steps:
-      - uses: actions/checkout@v2
-
-      - name: echooo
-
-        run: |
-          # use the commit-sha input, which is passed from the calling workflow
-          # if the commit-sha input is not provided, use ${{ github.sha }} as a fallback
-          echo "commit-sha: ${{ inputs.commit-sha || github.sha }}"
-          echo "$SHA"
-          echo ${{ env.SHA }}
+      - name: echo hello hello
+        run: echo "hello hello"
